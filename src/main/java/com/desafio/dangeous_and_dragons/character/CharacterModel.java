@@ -1,14 +1,17 @@
 package com.desafio.dangeous_and_dragons.character;
 
 
+import com.desafio.dangeous_and_dragons.character.dto.CharacterRequestDTO;
 import com.desafio.dangeous_and_dragons.character.enums.CharacterRole;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "character")
-public class Character {
+@NoArgsConstructor
+public class CharacterModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -38,4 +41,14 @@ public class Character {
     @Column(nullable = false)
     private int dice_faces;
 
+    public CharacterModel(CharacterRequestDTO character) {
+        this.name = character.getName();
+        this.role = character.getRole();
+        this.life = character.getLife();
+        this.strength = character.getStrength();
+        this.defense = character.getDefense();
+        this.agility = character.getAgility();
+        this.dice_quantity = character.getDice_quantity();
+        this.dice_faces = character.getDice_faces();
+    }
 }
