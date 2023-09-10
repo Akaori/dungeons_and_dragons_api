@@ -1,4 +1,4 @@
-# API Dangeous & Dragons (AD&D)
+# API Dungeons & Dragons (AD&D)
 
 API Rest usando Java SpringBoot com banco de dados Postgres.
 
@@ -12,7 +12,7 @@ O seu oponente sempre será um monstro, você pode escolher ou deixar aleatório
 ### 1 - Clonar o repositório
 
 ```bash
-git clone https://github.com/Akaori/dangeous_and_dragons_api.git
+git clone https://github.com/Akaori/dungeons_and_dragons_api.git
 ```
 
 ### 2 - Subir o banco de dados
@@ -21,7 +21,7 @@ git clone https://github.com/Akaori/dangeous_and_dragons_api.git
 Mudar para o diretório do repositório clonado:
 
 ```bash
-cd dangeous_and_dragons_api
+cd dungeons_and_dragons_api
 ```
 
 
@@ -31,7 +31,7 @@ Rodar o seguinte comando:
 docker-compose up
 ```
 
-Após isso, é possível acessar o banco de dados Postgres (PGAdmin) no seguinte endereço:
+> Opcional: Após isso, é possível acessar o banco de dados Postgres (PGAdmin) no seguinte endereço:
 
 http://localhost:89/
 
@@ -39,6 +39,12 @@ Credenciais:
 
 - email: `admin@example.com`
 - senha: `admin`
+
+Configurar servidor:
+
+![img.png](images/img.png)
+
+![img_1.png](images/img_1.png)
 
 ### 3 - Acessar o OpenAPI da API:
 

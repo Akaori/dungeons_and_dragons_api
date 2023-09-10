@@ -1,11 +1,12 @@
-package com.desafio.dangeous_and_dragons.character.dto;
+package com.desafio.dungeonsanddragons.character.dto;
 
-import com.desafio.dangeous_and_dragons.character.enums.CharacterRole;
+import com.desafio.dungeonsanddragons.character.enums.CharacterRole;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class CharacterPutRequestDTO {
-    private Long id;
+@NoArgsConstructor
+public class CharacterRequestDTO {
     private String name;
     private CharacterRole role;
     private int life;
@@ -14,4 +15,5 @@ public class CharacterPutRequestDTO {
     private int agility;
     private int dice_quantity;
     private int dice_faces;
+
 }

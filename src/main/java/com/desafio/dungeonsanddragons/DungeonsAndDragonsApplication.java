@@ -1,13 +1,13 @@
-package com.desafio.dangeous_and_dragons;
+package com.desafio.dungeonsanddragons;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DangeousAndDragonsApplication {
+public class DungeonsAndDragonsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DangeousAndDragonsApplication.class, args);
+		SpringApplication.run(DungeonsAndDragonsApplication.class, args);
 	}
 
 }

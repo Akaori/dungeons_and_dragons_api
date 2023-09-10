@@ -1,9 +1,9 @@
-package com.desafio.dangeous_and_dragons.character;
+package com.desafio.dungeonsanddragons.character;
 
 
-import com.desafio.dangeous_and_dragons.character.dto.CharacterPutRequestDTO;
-import com.desafio.dangeous_and_dragons.character.dto.CharacterRequestDTO;
-import com.desafio.dangeous_and_dragons.character.enums.CharacterRole;
+import com.desafio.dungeonsanddragons.character.dto.CharacterPutRequestDTO;
+import com.desafio.dungeonsanddragons.character.dto.CharacterRequestDTO;
+import com.desafio.dungeonsanddragons.character.enums.CharacterRole;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
