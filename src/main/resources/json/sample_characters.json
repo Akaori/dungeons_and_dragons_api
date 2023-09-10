@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Guerreiro",
+    "role": "HERO",
+    "life": 20,
+    "strength": 7,
+    "defense": 5,
+    "agility": 6,
+    "dice_quantity": 1,
+    "dice_faces": 12
+  },
+  {
+    "name": "Bárbaro",
+    "role": "HERO",
+    "life": 21,
+    "strength": 10,
+    "defense": 2,
+    "agility": 5,
+    "dice_quantity": 2,
+    "dice_faces": 8
+  },
+  {
+    "name": "Cavaleiro",
+    "role": "HERO",
+    "life": 26,
+    "strength": 6,
+    "defense": 8,
+    "agility": 3,
+    "dice_quantity": 2,
+    "dice_faces": 6
+  },
+  {
+    "name": "Orc",
+    "role": "MONSTER",
+    "life": 42,
+    "strength": 7,
+    "defense": 1,
+    "agility": 2,
+    "dice_quantity": 3,
+    "dice_faces": 4
+  },
+  {
+    "name": "Gigante",
+    "role": "MONSTER",
+    "life": 34,
+    "strength": 10,
+    "defense": 4,
+    "agility": 4,
+    "dice_quantity": 2,
+    "dice_faces": 6
+  },
+  {
+    "name": "Lobisomen",
+    "role": "MONSTER",
+    "life": 34,
+    "strength": 7,
+    "defense": 4,
+    "agility": 7,
+    "dice_quantity": 2,
+    "dice_faces": 4
+  }
+]
