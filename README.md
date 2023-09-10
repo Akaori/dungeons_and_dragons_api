@@ -46,3 +46,10 @@ http://localhost:8080/swagger-ui/index.html
 
 > Ao acessar a API, já é feita a inserção de alguns personagens de amostra. Para checar, é necessário ir no Swagger e testar a rota: `GET /api/v1/characters`
 
+
+### 4 - Colocar credenciais para utilizar a API
+
+Foi adicionada uma camada de seguranção (Basic Auth) para acessar a API. Utilizar as seguintes credenciais:
+
+- Username: `user`
+- Password: `user123`
