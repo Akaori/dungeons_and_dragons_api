@@ -2,7 +2,6 @@ package com.desafio.dungeonsanddragons.character;
 
 import com.desafio.dungeonsanddragons.character.dto.CharacterPutRequestDTO;
 import com.desafio.dungeonsanddragons.character.dto.CharacterRequestDTO;
-import com.desafio.dungeonsanddragons.character.dto.CharacterResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +16,12 @@ public class CharacterController {
     private final CharacterService characterService;
 
     @GetMapping
-    public ResponseEntity<List<CharacterResponseDTO>> findAll() {
+    public ResponseEntity<List<CharacterModel>> findAll() {
         return ResponseEntity.ok().body(characterService.getAll());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<CharacterResponseDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<CharacterModel> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(characterService.findById(id));
     }
 
@@ -32,13 +31,13 @@ public class CharacterController {
     }
 
     @PostMapping
-    public ResponseEntity<CharacterResponseDTO> save(@RequestBody CharacterRequestDTO character) {
+    public ResponseEntity<CharacterModel> save(@RequestBody CharacterRequestDTO character) {
         var createdCharacter = characterService.save(character);
         return ResponseEntity.ok().body(createdCharacter);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CharacterResponseDTO> update(@PathVariable("id") Long id, @RequestBody CharacterPutRequestDTO character) {
+    public ResponseEntity<CharacterModel> update(@PathVariable("id") Long id, @RequestBody CharacterPutRequestDTO character) {
         var updatedCharacter = characterService.update(character, id);
         return ResponseEntity.ok().body(updatedCharacter);
     }
