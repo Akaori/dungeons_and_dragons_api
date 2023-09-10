@@ -1,4 +1,4 @@
-package com.desafio.dangeous_and_dragons;
+package com.desafio.dungeonsanddragons;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
