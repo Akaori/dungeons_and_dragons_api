@@ -1,4 +1,4 @@
-package com.desafio.dangeous_and_dragons.character.enums;
+package com.desafio.dungeonsanddragons.character.enums;
 
 public enum CharacterRole {
     HERO("HERO"),

@@ -1,6 +1,6 @@
-package com.desafio.dangeous_and_dragons.character.dto;
+package com.desafio.dungeonsanddragons.character.dto;
 
-import com.desafio.dangeous_and_dragons.character.enums.CharacterRole;
+import com.desafio.dungeonsanddragons.character.enums.CharacterRole;
 import lombok.Data;
 
 @Data

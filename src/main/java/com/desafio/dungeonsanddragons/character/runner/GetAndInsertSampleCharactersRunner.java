@@ -1,7 +1,7 @@
-package com.desafio.dangeous_and_dragons.character.runner;
+package com.desafio.dungeonsanddragons.character.runner;
 
-import com.desafio.dangeous_and_dragons.character.CharacterModel;
-import com.desafio.dangeous_and_dragons.character.CharacterRepository;
+import com.desafio.dungeonsanddragons.character.CharacterModel;
+import com.desafio.dungeonsanddragons.character.CharacterRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

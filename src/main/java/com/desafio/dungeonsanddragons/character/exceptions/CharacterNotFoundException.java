@@ -1,4 +1,4 @@
-package com.desafio.dangeous_and_dragons.character.exceptions;
+package com.desafio.dungeonsanddragons.character.exceptions;
 
 
 import org.springframework.http.HttpStatus;

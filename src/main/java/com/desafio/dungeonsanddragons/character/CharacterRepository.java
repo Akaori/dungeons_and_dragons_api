@@ -1,4 +1,4 @@
-package com.desafio.dangeous_and_dragons.character;
+package com.desafio.dungeonsanddragons.character;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
