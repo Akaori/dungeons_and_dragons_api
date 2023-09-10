@@ -1,5 +1,16 @@
 package com.desafio.dangeous_and_dragons.character.enums;
 
 public enum CharacterRole {
-    HERO, MONSTER
+    HERO("HERO"),
+    MONSTER("MONSTER");
+
+    private String description;
+
+    CharacterRole(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
