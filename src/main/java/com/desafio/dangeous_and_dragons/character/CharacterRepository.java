@@ -1,4 +1,6 @@
 package com.desafio.dangeous_and_dragons.character;
 
-public class CharacterRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CharacterRepository extends JpaRepository<CharacterModel, Long> {
 }
