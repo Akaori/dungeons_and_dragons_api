@@ -3,6 +3,7 @@ package com.desafio.dangeous_and_dragons.character.impl;
 import com.desafio.dangeous_and_dragons.character.CharacterModel;
 import com.desafio.dangeous_and_dragons.character.CharacterRepository;
 import com.desafio.dangeous_and_dragons.character.CharacterService;
+import com.desafio.dangeous_and_dragons.character.dto.CharacterPutRequestDTO;
 import com.desafio.dangeous_and_dragons.character.dto.CharacterRequestDTO;
 import com.desafio.dangeous_and_dragons.character.dto.CharacterResponseDTO;
 import com.desafio.dangeous_and_dragons.character.exceptions.CharacterNotFoundException;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,8 +36,9 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public CharacterResponseDTO update(CharacterRequestDTO characterRequestDTO) {
-        return null;
+    public CharacterResponseDTO update(CharacterPutRequestDTO characterPutRequestDTO, Long id) {
+        this.findById(id);
+        return new CharacterResponseDTO(characterRepository.save(new CharacterModel(characterPutRequestDTO)));
     }
 
     @Override

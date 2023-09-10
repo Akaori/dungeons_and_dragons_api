@@ -1,5 +1,6 @@
 package com.desafio.dangeous_and_dragons.character;
 
+import com.desafio.dangeous_and_dragons.character.dto.CharacterPutRequestDTO;
 import com.desafio.dangeous_and_dragons.character.dto.CharacterRequestDTO;
 import com.desafio.dangeous_and_dragons.character.dto.CharacterResponseDTO;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public interface CharacterService {
 
     CharacterResponseDTO save(CharacterRequestDTO characterRequestDTO);
 
-    CharacterResponseDTO update(CharacterRequestDTO characterRequestDTO);
+    CharacterResponseDTO update(CharacterPutRequestDTO characterPutRequestDTO, Long id);
 
     void delete(Long id);
 }

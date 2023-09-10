@@ -1,5 +1,6 @@
 package com.desafio.dangeous_and_dragons.character;
 
+import com.desafio.dangeous_and_dragons.character.dto.CharacterPutRequestDTO;
 import com.desafio.dangeous_and_dragons.character.dto.CharacterRequestDTO;
 import com.desafio.dangeous_and_dragons.character.dto.CharacterResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,12 @@ public class CharacterController {
     public ResponseEntity<CharacterResponseDTO> save(@RequestBody CharacterRequestDTO character) {
         var createdCharacter = characterService.save(character);
         return ResponseEntity.ok().body(createdCharacter);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CharacterResponseDTO> update(@PathVariable("id") Long id, @RequestBody CharacterPutRequestDTO character) {
+        var updatedCharacter = characterService.update(character, id);
+        return ResponseEntity.ok().body(updatedCharacter);
     }
 
 }

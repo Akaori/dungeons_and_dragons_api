@@ -1,6 +1,7 @@
 package com.desafio.dangeous_and_dragons.character;
 
 
+import com.desafio.dangeous_and_dragons.character.dto.CharacterPutRequestDTO;
 import com.desafio.dangeous_and_dragons.character.dto.CharacterRequestDTO;
 import com.desafio.dangeous_and_dragons.character.enums.CharacterRole;
 import jakarta.persistence.*;
@@ -42,6 +43,18 @@ public class CharacterModel {
     private int dice_faces;
 
     public CharacterModel(CharacterRequestDTO character) {
+        this.name = character.getName();
+        this.role = character.getRole();
+        this.life = character.getLife();
+        this.strength = character.getStrength();
+        this.defense = character.getDefense();
+        this.agility = character.getAgility();
+        this.dice_quantity = character.getDice_quantity();
+        this.dice_faces = character.getDice_faces();
+    }
+
+    public CharacterModel(CharacterPutRequestDTO character) {
+        this.id = character.getId();
         this.name = character.getName();
         this.role = character.getRole();
         this.life = character.getLife();
