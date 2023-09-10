@@ -15,6 +15,7 @@ services:
     container_name: postgres10_container
     environment:
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=dungeons_and_dragons
     ports:
       - "5432:5432"
     networks:
