@@ -19,7 +19,6 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public List<CharacterModel> getAll() {
-        List<CharacterModel> characters = characterRepository.findAll();
         return characterRepository.findAll();
     }
 
