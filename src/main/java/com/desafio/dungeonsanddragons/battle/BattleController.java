@@ -32,4 +32,9 @@ public class BattleController {
         var createdBattle = battleService.save(battle);
         return ResponseEntity.ok().body(createdBattle);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable Long id) {
+        battleService.delete(id);
+    }
 }
