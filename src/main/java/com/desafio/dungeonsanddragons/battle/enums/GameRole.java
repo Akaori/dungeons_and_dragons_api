@@ -1,12 +1,12 @@
 package com.desafio.dungeonsanddragons.battle.enums;
 
-public enum BattleInitiative {
-    CHARACTER("CHARACTER"),
+public enum GameRole {
+    PLAYER("PLAYER"),
     OPPONENT("OPPONENT");
 
     private String description;
 
-    BattleInitiative(String description) {
+    GameRole(String description) {
         this.description = description;
     }
 
