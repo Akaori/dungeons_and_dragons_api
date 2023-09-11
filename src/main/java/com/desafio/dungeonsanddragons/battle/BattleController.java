@@ -40,13 +40,6 @@ public class BattleController {
 
     @PutMapping("/{id}/attack")
     public ResponseEntity<BattleModel> attack(@PathVariable Long id) {
-        BattleModel battle = battleService.findById(id);
-
-        // Check if the battle is open and the initiative is character
-        if (!battle.getStatus().equals("OPEN") || !battle.getInitiative().equals("CHARACTER")) {
-            ResponseEntity.badRequest().body("Invalid action");
-        }
-
         return ResponseEntity.ok(battleService.attack(id));
     }
 }
