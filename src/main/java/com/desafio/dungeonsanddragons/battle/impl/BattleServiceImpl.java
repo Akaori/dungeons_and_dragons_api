@@ -148,11 +148,11 @@ public class BattleServiceImpl implements BattleService {
         battle.setLog(battle.getLog() + logEntry);
 
         // Save the updated battle in the database
-        BattleModel updateddBattle = this.update(battle, battle.getId());
+        this.update(battle, battle.getId());
 
         // Create a new log entry with all the details of the attack action
         LogModel log = new LogModel();
-        log.setShift(updateddBattle.getShift());
+        log.setShift(battle.getShift());
         log.setAction(Action.ATTACK);
         log.setAttacker(GameRole.PLAYER);
         log.setDefender(GameRole.OPPONENT);
@@ -162,12 +162,12 @@ public class BattleServiceImpl implements BattleService {
         log.setResult(success ? Result.SUCCESS : Result.FAILURE);
 
         // Set the foreign key to reference the battle id
-        log.setBattle(updateddBattle);
+        log.setBattle(battle);
 
         // Save the log entry in the database
         logService.save(log);
 
         // Return the updated battle
-        return updateddBattle;
+        return battle;
     }
 }
