@@ -128,9 +128,9 @@ public class BattleServiceImpl implements BattleService {
         }
 
         // Update the battle log with all the details of the attack action
-        String logEntry = "Turno " + battle.getShift() +
-                ", attack value " + attackValue + ", defense value " + defenseValue +
-                ", damage value " + damageValue + ", result " + (success ? "success" : "failure") + "\n";
+        String logEntry = "Turno " + battle.getShift() + ": Personagem atacou" +
+                ", valor do ataque " + attackValue + ", valor da defesa " + defenseValue +
+                ", valor do dano " + damageValue + ", resultado " + (success ? "sucesso" : "falha") + "\n";
         battle.setLog(battle.getLog() + logEntry);
 
         // Save the updated battle in the database
