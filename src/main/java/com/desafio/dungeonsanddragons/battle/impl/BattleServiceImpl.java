@@ -6,11 +6,13 @@ import com.desafio.dungeonsanddragons.battle.BattleRepository;
 import com.desafio.dungeonsanddragons.battle.BattleService;
 import com.desafio.dungeonsanddragons.battle.dto.BattlePostRequestDTO;
 import com.desafio.dungeonsanddragons.battle.enums.BattleStatus;
+import com.desafio.dungeonsanddragons.battle.exceptions.BattleNotFoundException;
 import com.desafio.dungeonsanddragons.character.impl.CharacterServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 
@@ -22,6 +24,16 @@ public class BattleServiceImpl implements BattleService {
     private Random random;
     private final BattleRepository battleRepository;
     private final CharacterServiceImpl characterService;
+
+    @Override
+    public List<BattleModel> getAll() {
+        return battleRepository.findAll();
+    }
+
+    @Override
+    public BattleModel findById(Long id) {
+        return battleRepository.findById(id).orElseThrow(() -> new BattleNotFoundException(id));
+    }
 
     @Override
     public BattleModel save(BattlePostRequestDTO battlePostRequestDTO) {
@@ -53,5 +65,11 @@ public class BattleServiceImpl implements BattleService {
         battle.setLog("");
 
         return battleRepository.save(battle);
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.findById(id);
+        battleRepository.deleteById(id);
     }
 }
