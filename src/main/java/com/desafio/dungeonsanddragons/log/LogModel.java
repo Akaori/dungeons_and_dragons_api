@@ -4,6 +4,7 @@ import com.desafio.dungeonsanddragons.battle.BattleModel;
 import com.desafio.dungeonsanddragons.battle.enums.GameRole;
 import com.desafio.dungeonsanddragons.log.enums.Action;
 import com.desafio.dungeonsanddragons.log.enums.Result;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -42,5 +43,6 @@ public class LogModel {
 
     @ManyToOne
     @JoinColumn(name="battle_id", nullable=false)
+    @JsonIgnore
     private BattleModel battle;
 }
