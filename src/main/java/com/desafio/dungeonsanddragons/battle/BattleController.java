@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BattleController {
 
-    private final BattleServiceImpl battleService;
+    private final BattleService battleService;
 
     @GetMapping
     public ResponseEntity<List<BattleModel>> findAll() {
