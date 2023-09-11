@@ -1,4 +1,4 @@
-package com.desafio.dungeonsanddragons.auth;
+package com.desafio.dungeonsanddragons.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
