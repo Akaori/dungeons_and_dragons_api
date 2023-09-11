@@ -1,7 +1,7 @@
 package com.desafio.dungeonsanddragons.battle.enums;
 
 public enum BattleWinner {
-    CHARACTER("CHARACTER"),
+    PLAYER("PLAYER"),
     OPPONENT("OPPONENT");
 
     private String description;

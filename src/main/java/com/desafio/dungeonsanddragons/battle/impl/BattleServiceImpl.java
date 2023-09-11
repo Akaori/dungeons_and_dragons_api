@@ -8,10 +8,10 @@ import com.desafio.dungeonsanddragons.battle.dto.BattlePostRequestDTO;
 import com.desafio.dungeonsanddragons.battle.enums.BattleStatus;
 import com.desafio.dungeonsanddragons.battle.enums.BattleWinner;
 import com.desafio.dungeonsanddragons.battle.exceptions.BattleNotFoundException;
+import com.desafio.dungeonsanddragons.battle.exceptions.InvalidActionException;
 import com.desafio.dungeonsanddragons.character.impl.CharacterServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public class BattleServiceImpl implements BattleService {
 
         // Check who will have the initiative
         if (characterRoll > opponentRoll) {
-            battle.setInitiative(BattleInitiative.CHARACTER);
+            battle.setInitiative(BattleInitiative.PLAYER);
         } else if (characterRoll < opponentRoll) {
             battle.setInitiative(BattleInitiative.OPPONENT);
         } else {
@@ -63,7 +63,7 @@ public class BattleServiceImpl implements BattleService {
 
         // Set status, shift and log of the battle
         battle.setStatus(BattleStatus.OPEN);
-        battle.setShift(1);
+        battle.setShift(0);
         battle.setLog("");
 
         return battleRepository.save(battle);
@@ -84,6 +84,16 @@ public class BattleServiceImpl implements BattleService {
     @Override
     public BattleModel attack(Long id) {
         BattleModel battle = this.findById(id);
+
+        // Check if the battle is open
+        if (!battle.getStatus().equals(BattleStatus.OPEN)) {
+            throw new InvalidActionException("Invalid Action. Battle is Closed.");
+        }
+
+        // Check if the initiative is character
+        if (!battle.getInitiative().equals(BattleInitiative.PLAYER)) {
+            throw new InvalidActionException("Invalid Action. Initiative belongs to the Opponent.");
+        }
 
         // Calculate the attack value by rolling a 12-sided dice
         // and adding it to the character's strength and agility
@@ -115,7 +125,7 @@ public class BattleServiceImpl implements BattleService {
             if (battle.getOpponent().getLife() <= 0) {
                 // End the battle and declare the winner as the character
                 battle.setStatus(BattleStatus.CLOSED);
-                battle.setWinner(BattleWinner.CHARACTER);
+                battle.setWinner(BattleWinner.PLAYER);
             } else {
                 // Switch the initiative to the opponent and increment the turn number
                 battle.setInitiative(BattleInitiative.OPPONENT);
