@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class BattlePostRequestDTO {
-    private Long character_id;
-    private Long opponent_id;
+    private Long playerId;
+    private Long opponentId;
 }

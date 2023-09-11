@@ -43,8 +43,8 @@ public class BattleServiceImpl implements BattleService {
 
     @Override
     public BattleModel save(BattlePostRequestDTO battlePostRequestDTO) {
-        var player = characterService.findById(battlePostRequestDTO.getCharacter_id());
-        var opponent = characterService.findById(battlePostRequestDTO.getOpponent_id());
+        var player = characterService.findById(battlePostRequestDTO.getPlayerId());
+        var opponent = characterService.findById(battlePostRequestDTO.getOpponentId());
 
         // Create new Battle instance
         BattleModel battle = new BattleModel();
