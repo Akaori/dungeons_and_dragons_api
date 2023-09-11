@@ -1,15 +1,18 @@
 package com.desafio.dungeonsanddragons.battle.impl;
 
-import com.desafio.dungeonsanddragons.battle.enums.BattleInitiative;
+import com.desafio.dungeonsanddragons.battle.enums.GameRole;
 import com.desafio.dungeonsanddragons.battle.BattleModel;
 import com.desafio.dungeonsanddragons.battle.BattleRepository;
 import com.desafio.dungeonsanddragons.battle.BattleService;
 import com.desafio.dungeonsanddragons.battle.dto.BattlePostRequestDTO;
 import com.desafio.dungeonsanddragons.battle.enums.BattleStatus;
-import com.desafio.dungeonsanddragons.battle.enums.BattleWinner;
 import com.desafio.dungeonsanddragons.battle.exceptions.BattleNotFoundException;
 import com.desafio.dungeonsanddragons.battle.exceptions.InvalidActionException;
-import com.desafio.dungeonsanddragons.character.impl.CharacterServiceImpl;
+import com.desafio.dungeonsanddragons.character.CharacterService;
+import com.desafio.dungeonsanddragons.log.LogModel;
+import com.desafio.dungeonsanddragons.log.LogService;
+import com.desafio.dungeonsanddragons.log.enums.Action;
+import com.desafio.dungeonsanddragons.log.enums.Result;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +26,10 @@ import java.util.Random;
 public class BattleServiceImpl implements BattleService {
 
     @Autowired
-    private Random random;
+    private final Random random;
     private final BattleRepository battleRepository;
-    private final CharacterServiceImpl characterService;
+    private final CharacterService characterService;
+    private final LogService logService;
 
     @Override
     public List<BattleModel> getAll() {
@@ -53,9 +57,9 @@ public class BattleServiceImpl implements BattleService {
 
         // Check who will have the initiative
         if (characterRoll > opponentRoll) {
-            battle.setInitiative(BattleInitiative.PLAYER);
+            battle.setInitiative(GameRole.PLAYER);
         } else if (characterRoll < opponentRoll) {
-            battle.setInitiative(BattleInitiative.OPPONENT);
+            battle.setInitiative(GameRole.OPPONENT);
         } else {
             // If there is a tie, roll again until there is a winner
             return save(battlePostRequestDTO);
@@ -91,7 +95,7 @@ public class BattleServiceImpl implements BattleService {
         }
 
         // Check if the initiative is character
-        if (!battle.getInitiative().equals(BattleInitiative.PLAYER)) {
+        if (!battle.getInitiative().equals(GameRole.PLAYER)) {
             throw new InvalidActionException("Invalid Action. Initiative belongs to the Opponent.");
         }
 
@@ -125,15 +129,15 @@ public class BattleServiceImpl implements BattleService {
             if (battle.getOpponent().getLife() <= 0) {
                 // End the battle and declare the winner as the character
                 battle.setStatus(BattleStatus.CLOSED);
-                battle.setWinner(BattleWinner.PLAYER);
+                battle.setWinner(GameRole.PLAYER);
             } else {
                 // Switch the initiative to the opponent and increment the turn number
-                battle.setInitiative(BattleInitiative.OPPONENT);
+                battle.setInitiative(GameRole.OPPONENT);
                 battle.setShift(battle.getShift() + 1);
             }
         }  else {
             // Switch the initiative to the opponent and increment the turn number
-            battle.setInitiative(BattleInitiative.OPPONENT);
+            battle.setInitiative(GameRole.OPPONENT);
             battle.setShift(battle.getShift() + 1);
         }
 
