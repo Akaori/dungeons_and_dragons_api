@@ -68,7 +68,6 @@ public class BattleServiceImpl implements BattleService {
         // Set status, shift and log of the battle
         battle.setStatus(BattleStatus.OPEN);
         battle.setShift(0);
-        battle.setLog("");
 
         return battleRepository.save(battle);
     }
@@ -140,12 +139,6 @@ public class BattleServiceImpl implements BattleService {
             battle.setInitiative(GameRole.OPPONENT);
             battle.setShift(battle.getShift() + 1);
         }
-
-//        // Update the battle log with all the details of the attack action
-//        String logEntry = "Turno " + battle.getShift() + ": Personagem atacou" +
-//                ", valor do ataque " + attackValue + ", valor da defesa " + defenseValue +
-//                ", valor do dano " + damageValue + ", resultado " + (success ? "sucesso" : "falha") + "\n";
-//        battle.setLog(battle.getLog() + logEntry);
 
         // Save the updated battle in the database
         this.update(battle, battle.getId());
@@ -226,12 +219,6 @@ public class BattleServiceImpl implements BattleService {
             battle.setInitiative(GameRole.PLAYER);
             battle.setShift(battle.getShift() + 1);
         }
-
-//        // Update the battle log with all the details of the defend action
-//        String logEntry = "Turno " + battle.getShift() + ": Personagem defendeu" +
-//                ", valor da defesa " + defenseValue + ", valor do ataque " + attackValue +
-//                ", valor da dano " + damageValue + ", resultado " + (success ? "sucesso" : "falha") + "\n";
-//        battle.setLog(battle.getLog() + logEntry);
 
         // Save the updated battle in the database
         this.update(battle, battle.getId());

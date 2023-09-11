@@ -28,9 +28,6 @@ public class BattleModel {
     private GameRole initiative;
 
     @Column
-    private String log;
-
-    @Column
     private GameRole winner;
 
     @ManyToOne
