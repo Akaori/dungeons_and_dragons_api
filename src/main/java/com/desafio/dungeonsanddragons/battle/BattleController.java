@@ -40,4 +40,9 @@ public class BattleController {
     public ResponseEntity<BattleModel> attack(@PathVariable Long id) {
         return ResponseEntity.ok(battleService.attack(id));
     }
+
+    @PutMapping("/{id}/defense")
+    public ResponseEntity<BattleModel> defense(@PathVariable Long id) {
+        return ResponseEntity.ok(battleService.defense(id));
+    }
 }

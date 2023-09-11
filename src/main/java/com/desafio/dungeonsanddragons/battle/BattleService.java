@@ -18,4 +18,6 @@ public interface BattleService {
     void delete(Long id);
 
     BattleModel attack(Long id);
+
+    BattleModel defense(Long id);
 }
