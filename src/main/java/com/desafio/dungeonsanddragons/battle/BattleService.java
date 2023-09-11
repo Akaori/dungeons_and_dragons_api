@@ -1,8 +1,7 @@
 package com.desafio.dungeonsanddragons.battle;
 
 import com.desafio.dungeonsanddragons.battle.dto.BattlePostRequestDTO;
-import com.desafio.dungeonsanddragons.character.CharacterModel;
-import com.desafio.dungeonsanddragons.character.dto.CharacterPutRequestDTO;
+
 
 import java.util.List;
 
@@ -19,4 +18,6 @@ public interface BattleService {
     void delete(Long id);
 
     BattleModel attack(Long id);
+
+    BattleModel defense(Long id);
 }

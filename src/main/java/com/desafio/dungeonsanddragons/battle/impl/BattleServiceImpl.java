@@ -68,7 +68,6 @@ public class BattleServiceImpl implements BattleService {
         // Set status, shift and log of the battle
         battle.setStatus(BattleStatus.OPEN);
         battle.setShift(0);
-        battle.setLog("");
 
         return battleRepository.save(battle);
     }
@@ -141,12 +140,6 @@ public class BattleServiceImpl implements BattleService {
             battle.setShift(battle.getShift() + 1);
         }
 
-        // Update the battle log with all the details of the attack action
-        String logEntry = "Turno " + battle.getShift() + ": Personagem atacou" +
-                ", valor do ataque " + attackValue + ", valor da defesa " + defenseValue +
-                ", valor do dano " + damageValue + ", resultado " + (success ? "sucesso" : "falha") + "\n";
-        battle.setLog(battle.getLog() + logEntry);
-
         // Save the updated battle in the database
         this.update(battle, battle.getId());
 
@@ -156,6 +149,86 @@ public class BattleServiceImpl implements BattleService {
         log.setAction(Action.ATTACK);
         log.setAttacker(GameRole.PLAYER);
         log.setDefender(GameRole.OPPONENT);
+        log.setAttackValue(attackValue);
+        log.setDefenseValue(defenseValue);
+        log.setDamageValue(damageValue);
+        log.setResult(success ? Result.SUCCESS : Result.FAILURE);
+
+        // Set the foreign key to reference the battle id
+        log.setBattle(battle);
+
+        // Save the log entry in the database
+        logService.save(log);
+
+        // Return the updated battle
+        return battle;
+    }
+
+    @Override
+    public BattleModel defense(Long id) {
+        BattleModel battle = this.findById(id);
+
+        // Check if the battle is open
+        if (!battle.getStatus().equals(BattleStatus.OPEN)) {
+            throw new InvalidActionException("Invalid Action. Battle is Closed.");
+        }
+
+        // Check if the initiative is character
+        if (!battle.getInitiative().equals(GameRole.OPPONENT)) {
+            throw new InvalidActionException("Invalid Action. Initiative belongs to the Player.");
+        }
+
+        // Calculate the defense value by rolling a 12-sided dice
+        // and adding it to the character's defense and agility
+        int defenseValue = random.nextInt(12) + 1 + battle.getCharacter().getDefense() + battle.getCharacter().getAgility();
+
+        // Calculate the attack value by rolling a 12-sided dice
+        // and adding it to the opponent's strength and agility
+        int attackValue = random.nextInt(12) + 1 + battle.getOpponent().getStrength() + battle.getOpponent().getAgility();
+
+        // Compare the defense value and the attack value
+        // and determine if the defense was successful or not
+        boolean success = defenseValue >= attackValue;
+
+        // Initialize the damage value to zero
+        int damageValue = 0;
+
+        // If not successful, calculate the damage value by rolling the dice according
+        // to the opponent's damage attribute and adding it to their strength
+        if (!success) {
+            for (int i = 0; i < battle.getOpponent().getDice_quantity(); i++) {
+                damageValue += random.nextInt(battle.getOpponent().getDice_faces()) + 1;
+            }
+            damageValue += battle.getOpponent().getStrength();
+
+            // Subtract the damage value from the character's life points
+            // and check if they are zero or less
+            battle.getCharacter().setLife(battle.getCharacter().getLife() - damageValue);
+            if (battle.getCharacter().getLife() <= 0) {
+                // End the battle and declare the winner as the opponent
+                battle.setShift(battle.getShift() + 1);
+                battle.setStatus(BattleStatus.CLOSED);
+                battle.setWinner(GameRole.OPPONENT);
+            } else {
+                // Switch the initiative to the character and increment the turn number
+                battle.setInitiative(GameRole.PLAYER);
+                battle.setShift(battle.getShift() + 1);
+            }
+        } else {
+            // Switch the initiative to the character and increment the turn number
+            battle.setInitiative(GameRole.PLAYER);
+            battle.setShift(battle.getShift() + 1);
+        }
+
+        // Save the updated battle in the database
+        this.update(battle, battle.getId());
+
+        // Create a new log entry with all the details of the attack action
+        LogModel log = new LogModel();
+        log.setShift(battle.getShift());
+        log.setAction(Action.DEFENSE);
+        log.setAttacker(GameRole.OPPONENT);
+        log.setDefender(GameRole.PLAYER);
         log.setAttackValue(attackValue);
         log.setDefenseValue(defenseValue);
         log.setDamageValue(damageValue);

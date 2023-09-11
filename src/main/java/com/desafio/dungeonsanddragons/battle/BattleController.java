@@ -1,8 +1,6 @@
 package com.desafio.dungeonsanddragons.battle;
 
 import com.desafio.dungeonsanddragons.battle.dto.BattlePostRequestDTO;
-import com.desafio.dungeonsanddragons.battle.impl.BattleServiceImpl;
-import com.desafio.dungeonsanddragons.character.CharacterModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BattleController {
 
-    private final BattleServiceImpl battleService;
+    private final BattleService battleService;
 
     @GetMapping
     public ResponseEntity<List<BattleModel>> findAll() {
@@ -41,5 +39,10 @@ public class BattleController {
     @PutMapping("/{id}/attack")
     public ResponseEntity<BattleModel> attack(@PathVariable Long id) {
         return ResponseEntity.ok(battleService.attack(id));
+    }
+
+    @PutMapping("/{id}/defense")
+    public ResponseEntity<BattleModel> defense(@PathVariable Long id) {
+        return ResponseEntity.ok(battleService.defense(id));
     }
 }
