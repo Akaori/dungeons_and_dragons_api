@@ -2,6 +2,7 @@ package com.desafio.dungeonsanddragons.battle;
 
 import com.desafio.dungeonsanddragons.battle.enums.BattleInitiative;
 import com.desafio.dungeonsanddragons.battle.enums.BattleStatus;
+import com.desafio.dungeonsanddragons.battle.enums.BattleWinner;
 import com.desafio.dungeonsanddragons.character.CharacterModel;
 import com.desafio.dungeonsanddragons.log.LogModel;
 import jakarta.persistence.*;
@@ -31,7 +32,7 @@ public class BattleModel {
     private String log;
 
     @Column
-    private String winner;
+    private BattleWinner winner;
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
