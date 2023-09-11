@@ -1,6 +1,7 @@
 package com.desafio.dungeonsanddragons.log;
 
 import com.desafio.dungeonsanddragons.battle.BattleModel;
+import com.desafio.dungeonsanddragons.battle.enums.GameRole;
 import com.desafio.dungeonsanddragons.log.enums.Action;
 import com.desafio.dungeonsanddragons.log.enums.Result;
 import jakarta.persistence.*;
@@ -22,13 +23,10 @@ public class LogModel {
     private Action action;
 
     @Column(nullable = false)
-    private String attacker;
+    private GameRole attacker;
 
     @Column(nullable = false)
-    private String defender;
-
-    @Column
-    private int modifier;
+    private GameRole defender;
 
     @Column
     private int attackValue;

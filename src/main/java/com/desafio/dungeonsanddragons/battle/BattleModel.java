@@ -1,8 +1,7 @@
 package com.desafio.dungeonsanddragons.battle;
 
-import com.desafio.dungeonsanddragons.battle.enums.BattleInitiative;
+import com.desafio.dungeonsanddragons.battle.enums.GameRole;
 import com.desafio.dungeonsanddragons.battle.enums.BattleStatus;
-import com.desafio.dungeonsanddragons.battle.enums.BattleWinner;
 import com.desafio.dungeonsanddragons.character.CharacterModel;
 import com.desafio.dungeonsanddragons.log.LogModel;
 import jakarta.persistence.*;
@@ -26,13 +25,13 @@ public class BattleModel {
     private int shift;
 
     @Column(nullable = false)
-    private BattleInitiative initiative;
+    private GameRole initiative;
 
     @Column
     private String log;
 
     @Column
-    private BattleWinner winner;
+    private GameRole winner;
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)

@@ -1,12 +1,12 @@
 package com.desafio.dungeonsanddragons.battle.enums;
 
-public enum BattleWinner {
+public enum GameRole {
     PLAYER("PLAYER"),
     OPPONENT("OPPONENT");
 
     private String description;
 
-    BattleWinner(String description) {
+    GameRole(String description) {
         this.description = description;
     }
 
