@@ -43,12 +43,12 @@ public class BattleServiceImpl implements BattleService {
 
     @Override
     public BattleModel save(BattlePostRequestDTO battlePostRequestDTO) {
-        var character = characterService.findById(battlePostRequestDTO.getCharacter_id());
+        var player = characterService.findById(battlePostRequestDTO.getCharacter_id());
         var opponent = characterService.findById(battlePostRequestDTO.getOpponent_id());
 
         // Create new Battle instance
         BattleModel battle = new BattleModel();
-        battle.setCharacter(character);
+        battle.setPlayer(player);
         battle.setOpponent(opponent);
 
         // Roll a 20-sided dice for each (character and opponent)
@@ -100,7 +100,7 @@ public class BattleServiceImpl implements BattleService {
 
         // Calculate the attack value by rolling a 12-sided dice
         // and adding it to the character's strength and agility
-        int attackValue = random.nextInt(12) + 1 + battle.getCharacter().getStrength() + battle.getCharacter().getAgility();
+        int attackValue = random.nextInt(12) + 1 + battle.getPlayer().getStrength() + battle.getPlayer().getAgility();
 
         // Calculate the defense value by rolling a 12-sided dice
         // and adding it to the opponent's defense and agility
@@ -116,26 +116,26 @@ public class BattleServiceImpl implements BattleService {
         // If successful, calculate the damage value by rolling the dice according
         // to the character's damage attribute and adding it to their strength
         if (success) {
-            for (int i = 0; i < battle.getCharacter().getDice_quantity(); i++) {
-                damageValue += random.nextInt(battle.getCharacter().getDice_faces()) + 1;
+            for (int i = 0; i < battle.getPlayer().getDice_quantity(); i++) {
+                damageValue += random.nextInt(battle.getPlayer().getDice_faces()) + 1;
             }
-            damageValue += battle.getCharacter().getStrength();
+            damageValue += battle.getPlayer().getStrength();
 
             // Subtract the damage value from the opponent's life points
             // and check if they are zero or less
             battle.getOpponent().setLife(battle.getOpponent().getLife() - damageValue);
 
             if (battle.getOpponent().getLife() <= 0) {
-                // End the battle and declare the winner as the character
+                // End the battle and declare the winner as the player
                 battle.setStatus(BattleStatus.CLOSED);
                 battle.setWinner(GameRole.PLAYER);
             } else {
-                // Switch the initiative to the opponent and increment the turn number
+                // Switch the initiative to the opponent and increment the shift number
                 battle.setInitiative(GameRole.OPPONENT);
                 battle.setShift(battle.getShift() + 1);
             }
         }  else {
-            // Switch the initiative to the opponent and increment the turn number
+            // Switch the initiative to the opponent and increment the shift number
             battle.setInitiative(GameRole.OPPONENT);
             battle.setShift(battle.getShift() + 1);
         }
@@ -180,7 +180,7 @@ public class BattleServiceImpl implements BattleService {
 
         // Calculate the defense value by rolling a 12-sided dice
         // and adding it to the character's defense and agility
-        int defenseValue = random.nextInt(12) + 1 + battle.getCharacter().getDefense() + battle.getCharacter().getAgility();
+        int defenseValue = random.nextInt(12) + 1 + battle.getPlayer().getDefense() + battle.getPlayer().getAgility();
 
         // Calculate the attack value by rolling a 12-sided dice
         // and adding it to the opponent's strength and agility
@@ -203,8 +203,8 @@ public class BattleServiceImpl implements BattleService {
 
             // Subtract the damage value from the character's life points
             // and check if they are zero or less
-            battle.getCharacter().setLife(battle.getCharacter().getLife() - damageValue);
-            if (battle.getCharacter().getLife() <= 0) {
+            battle.getPlayer().setLife(battle.getPlayer().getLife() - damageValue);
+            if (battle.getPlayer().getLife() <= 0) {
                 // End the battle and declare the winner as the opponent
                 battle.setShift(battle.getShift() + 1);
                 battle.setStatus(BattleStatus.CLOSED);

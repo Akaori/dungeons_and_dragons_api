@@ -32,7 +32,7 @@ public class BattleModel {
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
-    private CharacterModel character;
+    private CharacterModel player;
 
     @ManyToOne
     @JoinColumn(name = "opponent_id", nullable = false)
