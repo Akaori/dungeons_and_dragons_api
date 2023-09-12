@@ -6,8 +6,8 @@
     "strength": 7,
     "defense": 5,
     "agility": 6,
-    "dice_quantity": 1,
-    "dice_faces": 12
+    "diceQuantity": 1,
+    "diceFaces": 12
   },
   {
     "name": "Bárbaro",
@@ -16,8 +16,8 @@
     "strength": 10,
     "defense": 2,
     "agility": 5,
-    "dice_quantity": 2,
-    "dice_faces": 8
+    "diceQuantity": 2,
+    "diceFaces": 8
   },
   {
     "name": "Cavaleiro",
@@ -26,8 +26,8 @@
     "strength": 6,
     "defense": 8,
     "agility": 3,
-    "dice_quantity": 2,
-    "dice_faces": 6
+    "diceQuantity": 2,
+    "diceFaces": 6
   },
   {
     "name": "Orc",
@@ -36,8 +36,8 @@
     "strength": 7,
     "defense": 1,
     "agility": 2,
-    "dice_quantity": 3,
-    "dice_faces": 4
+    "diceQuantity": 3,
+    "diceFaces": 4
   },
   {
     "name": "Gigante",
@@ -46,8 +46,8 @@
     "strength": 10,
     "defense": 4,
     "agility": 4,
-    "dice_quantity": 2,
-    "dice_faces": 6
+    "diceQuantity": 2,
+    "diceFaces": 6
   },
   {
     "name": "Lobisomen",
@@ -56,7 +56,7 @@
     "strength": 7,
     "defense": 4,
     "agility": 7,
-    "dice_quantity": 2,
-    "dice_faces": 4
+    "diceQuantity": 2,
+    "diceFaces": 4
   }
 ]

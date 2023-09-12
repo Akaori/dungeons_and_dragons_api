@@ -12,6 +12,6 @@ public class CharacterPutRequestDTO {
     private int strength;
     private int defense;
     private int agility;
-    private int dice_quantity;
-    private int dice_faces;
+    private int diceQuantity;
+    private int diceFaces;
 }

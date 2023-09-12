@@ -116,8 +116,8 @@ public class BattleServiceImpl implements BattleService {
         // If successful, calculate the damage value by rolling the dice according
         // to the character's damage attribute and adding it to their strength
         if (success) {
-            for (int i = 0; i < battle.getPlayer().getDice_quantity(); i++) {
-                damageValue += random.nextInt(battle.getPlayer().getDice_faces()) + 1;
+            for (int i = 0; i < battle.getPlayer().getDiceQuantity(); i++) {
+                damageValue += random.nextInt(battle.getPlayer().getDiceFaces()) + 1;
             }
             damageValue += battle.getPlayer().getStrength();
 
@@ -196,8 +196,8 @@ public class BattleServiceImpl implements BattleService {
         // If not successful, calculate the damage value by rolling the dice according
         // to the opponent's damage attribute and adding it to their strength
         if (!success) {
-            for (int i = 0; i < battle.getOpponent().getDice_quantity(); i++) {
-                damageValue += random.nextInt(battle.getOpponent().getDice_faces()) + 1;
+            for (int i = 0; i < battle.getOpponent().getDiceQuantity(); i++) {
+                damageValue += random.nextInt(battle.getOpponent().getDiceFaces()) + 1;
             }
             damageValue += battle.getOpponent().getStrength();
 

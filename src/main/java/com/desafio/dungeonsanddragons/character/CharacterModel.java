@@ -37,10 +37,10 @@ public class CharacterModel {
     private int agility;
 
     @Column(nullable = false)
-    private int dice_quantity;
+    private int diceQuantity;
 
     @Column(nullable = false)
-    private int dice_faces;
+    private int diceFaces;
 
     public CharacterModel(CharacterRequestDTO character) {
         this.name = character.getName();
@@ -49,8 +49,8 @@ public class CharacterModel {
         this.strength = character.getStrength();
         this.defense = character.getDefense();
         this.agility = character.getAgility();
-        this.dice_quantity = character.getDice_quantity();
-        this.dice_faces = character.getDice_faces();
+        this.diceQuantity = character.getDiceQuantity();
+        this.diceFaces = character.getDiceFaces();
     }
 
     public CharacterModel(CharacterPutRequestDTO character) {
@@ -61,7 +61,7 @@ public class CharacterModel {
         this.strength = character.getStrength();
         this.defense = character.getDefense();
         this.agility = character.getAgility();
-        this.dice_quantity = character.getDice_quantity();
-        this.dice_faces = character.getDice_faces();
+        this.diceQuantity = character.getDiceQuantity();
+        this.diceFaces = character.getDiceFaces();
     }
 }
