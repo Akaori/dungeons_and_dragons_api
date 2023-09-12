@@ -1,8 +1,10 @@
 package com.desafio.dungeonsanddragons.log.impl;
 
+import com.desafio.dungeonsanddragons.battle.exceptions.BattleNotFoundException;
 import com.desafio.dungeonsanddragons.log.LogModel;
 import com.desafio.dungeonsanddragons.log.LogRepository;
 import com.desafio.dungeonsanddragons.log.LogService;
+import com.desafio.dungeonsanddragons.log.exceptions.LogNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,12 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public LogModel findByBattleId(Long battleId) {
-        return logRepository.findBybattle_id(battleId);
+        var log = logRepository.findBybattle_id(battleId);
+
+        if (log != null) {
+            return log;
+        } else {
+            throw new LogNotFoundException(battleId);
+        }
     }
 }
