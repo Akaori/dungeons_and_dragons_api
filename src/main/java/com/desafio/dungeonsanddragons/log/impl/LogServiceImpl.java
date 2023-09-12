@@ -20,7 +20,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<LogModel> findByBattleId(Long battleId) {
-        return logRepository.findAllBybattle_id(battleId);
+    public LogModel findByBattleId(Long battleId) {
+        return logRepository.findBybattle_id(battleId);
     }
 }

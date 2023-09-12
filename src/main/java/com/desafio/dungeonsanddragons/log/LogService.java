@@ -5,5 +5,5 @@ import java.util.List;
 public interface LogService {
     LogModel save(LogModel log);
 
-    List<LogModel> findByBattleId(Long battleId);
+    LogModel findByBattleId(Long battleId);
 }
