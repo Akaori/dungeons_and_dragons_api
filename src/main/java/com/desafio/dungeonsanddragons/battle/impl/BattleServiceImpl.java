@@ -11,6 +11,8 @@ import com.desafio.dungeonsanddragons.battle.exceptions.InvalidActionException;
 import com.desafio.dungeonsanddragons.character.CharacterService;
 import com.desafio.dungeonsanddragons.log.LogModel;
 import com.desafio.dungeonsanddragons.log.LogService;
+import com.desafio.dungeonsanddragons.shift.ShiftModel;
+import com.desafio.dungeonsanddragons.shift.ShiftService;
 import com.desafio.dungeonsanddragons.log.enums.Action;
 import com.desafio.dungeonsanddragons.log.enums.Result;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ public class BattleServiceImpl implements BattleService {
     private final BattleRepository battleRepository;
     private final CharacterService characterService;
     private final LogService logService;
+    private final ShiftService shiftService;
 
     @Override
     public List<BattleModel> getAll() {
@@ -68,8 +71,22 @@ public class BattleServiceImpl implements BattleService {
         // Set status, shift and log of the battle
         battle.setStatus(BattleStatus.OPEN);
         battle.setShift(0);
+        battleRepository.save(battle);
 
-        return battleRepository.save(battle);
+        // Create a new log entry with all the details of the attack action
+        LogModel log = new LogModel();
+        log.setPlayer(player.getName());
+        log.setOpponent(opponent.getName());
+        if (battle.getInitiative() == GameRole.PLAYER) {
+            log.setWhoStarted(player.getName());
+        } else {
+            log.setWhoStarted(opponent.getName());
+        }
+        log.setBattle(battle);
+        // Save the log entry in the database
+        logService.save(log);
+
+        return battle;
     }
 
     @Override
@@ -143,22 +160,20 @@ public class BattleServiceImpl implements BattleService {
         // Save the updated battle in the database
         this.update(battle, battle.getId());
 
-        // Create a new log entry with all the details of the attack action
-        LogModel log = new LogModel();
-        log.setShift(battle.getShift());
-        log.setAction(Action.ATTACK);
-        log.setAttacker(GameRole.PLAYER);
-        log.setDefender(GameRole.OPPONENT);
-        log.setAttackValue(attackValue);
-        log.setDefenseValue(defenseValue);
-        log.setDamageValue(damageValue);
-        log.setResult(success ? Result.SUCCESS : Result.FAILURE);
-
-        // Set the foreign key to reference the battle id
-        log.setBattle(battle);
-
-        // Save the log entry in the database
-        logService.save(log);
+        // Get the existing log
+        LogModel log = logService.findByBattleId(battle.getId());
+        // Create a new shift
+        ShiftModel shift = new ShiftModel();
+        shift.setLog(log);
+        shift.setShift(battle.getShift());
+        shift.setAction(Action.ATTACK);
+        shift.setAttacker(GameRole.PLAYER);
+        shift.setDefender(GameRole.OPPONENT);
+        shift.setAttackValue(attackValue);
+        shift.setDefenseValue(defenseValue);
+        shift.setDamageValue(damageValue);
+        shift.setResult(success ? Result.SUCCESS : Result.FAILURE);
+        shiftService.save(shift);
 
         // Return the updated battle
         return battle;
@@ -223,22 +238,21 @@ public class BattleServiceImpl implements BattleService {
         // Save the updated battle in the database
         this.update(battle, battle.getId());
 
-        // Create a new log entry with all the details of the attack action
-        LogModel log = new LogModel();
-        log.setShift(battle.getShift());
-        log.setAction(Action.DEFENSE);
-        log.setAttacker(GameRole.OPPONENT);
-        log.setDefender(GameRole.PLAYER);
-        log.setAttackValue(attackValue);
-        log.setDefenseValue(defenseValue);
-        log.setDamageValue(damageValue);
-        log.setResult(success ? Result.SUCCESS : Result.FAILURE);
 
-        // Set the foreign key to reference the battle id
-        log.setBattle(battle);
-
-        // Save the log entry in the database
-        logService.save(log);
+        // Get the existing log
+        LogModel log = logService.findByBattleId(battle.getId());
+        // Create a new shift
+        ShiftModel shift = new ShiftModel();
+        shift.setLog(log);
+        shift.setShift(battle.getShift());
+        shift.setAction(Action.DEFENSE);
+        shift.setAttacker(GameRole.OPPONENT);
+        shift.setDefender(GameRole.PLAYER);
+        shift.setAttackValue(attackValue);
+        shift.setDefenseValue(defenseValue);
+        shift.setDamageValue(damageValue);
+        shift.setResult(success ? Result.SUCCESS : Result.FAILURE);
+        shiftService.save(shift);
 
         // Return the updated battle
         return battle;

@@ -1,12 +1,12 @@
 package com.desafio.dungeonsanddragons.log;
 
 import com.desafio.dungeonsanddragons.battle.BattleModel;
-import com.desafio.dungeonsanddragons.battle.enums.GameRole;
-import com.desafio.dungeonsanddragons.log.enums.Action;
-import com.desafio.dungeonsanddragons.log.enums.Result;
+import com.desafio.dungeonsanddragons.shift.ShiftModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -18,31 +18,19 @@ public class LogModel {
     private Long id;
 
     @Column(nullable = false)
-    private int shift;
+    private String player;
 
     @Column(nullable = false)
-    private Action action;
+    private String opponent;
 
     @Column(nullable = false)
-    private GameRole attacker;
+    private String whoStarted;
 
-    @Column(nullable = false)
-    private GameRole defender;
-
-    @Column
-    private int attackValue;
-
-    @Column
-    private int defenseValue;
-
-    @Column
-    private int damageValue;
-
-    @Column
-    private Result result;
-
-    @ManyToOne
-    @JoinColumn(name="battle_id", nullable=false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "battle_id", referencedColumnName = "id")
     @JsonIgnore
     private BattleModel battle;
+
+    @OneToMany(mappedBy = "log", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ShiftModel> shifts;
 }

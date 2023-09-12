@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface LogRepository extends JpaRepository<LogModel, Long> {
-    List<LogModel> findAllBybattle_id(Long battle_id);
+    LogModel findBybattle_id(Long battle_id);
 }

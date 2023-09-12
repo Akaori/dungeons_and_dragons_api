@@ -18,7 +18,7 @@ public class LogController {
     private final LogService logService;
 
     @GetMapping(value = "/{battleId}")
-    public ResponseEntity<List<LogModel>> findByBattleId(@PathVariable Long battleId) {
+    public ResponseEntity<LogModel> findByBattleId(@PathVariable Long battleId) {
         return ResponseEntity.ok().body(logService.findByBattleId(battleId));
     }
 }

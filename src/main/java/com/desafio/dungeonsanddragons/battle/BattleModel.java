@@ -38,6 +38,6 @@ public class BattleModel {
     @JoinColumn(name = "opponent_id", nullable = false)
     private CharacterModel opponent;
 
-    @OneToMany(mappedBy = "battle")
-    private List<LogModel> logs;
+    @OneToOne(mappedBy = "battle", cascade = CascadeType.ALL)
+    private LogModel log;
 }
