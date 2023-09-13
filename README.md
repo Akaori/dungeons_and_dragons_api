@@ -61,7 +61,8 @@ git clone https://github.com/Akaori/dungeons_and_dragons_api.git
 ```
 
 ### 2 - Subir os serviços (aplicativo springboot, postgres e pgadmin)
-> É necessário ter o docker e docker-compose instalados. 
+> É necessário ter o docker e docker-compose instalados. Para instalar no Ubuntu, seguir o seguinte tutorial: 
+> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt
 
 Mudar para o diretório do repositório clonado:
 
