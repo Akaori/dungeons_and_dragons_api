@@ -7,6 +7,51 @@ Escolha o seu nome e personagem favorito (herói ou monstro).
 O seu oponente sempre será um monstro, você pode escolher ou deixar aleatório.
 
 
+## Arquitetura de tabelas
+
+```mermaid
+erDiagram
+CHARACTER {
+id int
+name string
+role CharacterRole
+life int
+strength int
+defense int
+agility int
+diceQuantity int
+diceFaces int
+}
+BATTLE {
+id int
+status BattleStatus
+shift int
+initiative GameRole
+winner GameRole
+}
+LOG {
+id int
+player string
+opponent string
+whoStarted string
+}
+SHIFT {
+id int
+shift int
+action Action
+attacker GameRole
+defender GameRole
+attackValue int
+defenseValue int
+damageValue int
+result Result
+}
+CHARACTER ||--o{ BATTLE : player 
+CHARACTER ||--o{ BATTLE : opponent 
+BATTLE ||--|{ LOG : log 
+LOG ||--|{ SHIFT : shifts
+```
+
 ## Instruções
 
 ### 1 - Clonar o repositório
