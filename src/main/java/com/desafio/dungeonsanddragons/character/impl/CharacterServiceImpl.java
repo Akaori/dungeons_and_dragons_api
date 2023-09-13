@@ -7,14 +7,18 @@ import com.desafio.dungeonsanddragons.character.dto.CharacterPutRequestDTO;
 import com.desafio.dungeonsanddragons.character.dto.CharacterRequestDTO;
 import com.desafio.dungeonsanddragons.character.exceptions.CharacterNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
 public class CharacterServiceImpl implements CharacterService {
 
+    @Autowired
+    private final Random random;
     final CharacterRepository characterRepository;
 
     @Override
@@ -42,5 +46,12 @@ public class CharacterServiceImpl implements CharacterService {
     public void delete(Long id) {
         this.findById(id);
         characterRepository.deleteById(id);
+    }
+
+    @Override
+    public Long getRandomMonsterId() {
+        List<Long> monstersIds = characterRepository.findMonstersIds();
+        int randomMonsterId = random.nextInt(monstersIds.size());
+        return monstersIds.get(randomMonsterId);
     }
 }

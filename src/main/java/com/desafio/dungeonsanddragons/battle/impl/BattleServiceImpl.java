@@ -8,6 +8,8 @@ import com.desafio.dungeonsanddragons.battle.dto.BattlePostRequestDTO;
 import com.desafio.dungeonsanddragons.battle.enums.BattleStatus;
 import com.desafio.dungeonsanddragons.battle.exceptions.BattleNotFoundException;
 import com.desafio.dungeonsanddragons.battle.exceptions.InvalidActionException;
+import com.desafio.dungeonsanddragons.battle.exceptions.MissingPlayerException;
+import com.desafio.dungeonsanddragons.character.CharacterModel;
 import com.desafio.dungeonsanddragons.character.CharacterService;
 import com.desafio.dungeonsanddragons.damage.DamageService;
 import com.desafio.dungeonsanddragons.damage.dto.DamageRequestDTO;
@@ -49,8 +51,23 @@ public class BattleServiceImpl implements BattleService {
 
     @Override
     public BattleModel save(BattlePostRequestDTO battlePostRequestDTO) {
+
+        // check if playerId is set
+        if (battlePostRequestDTO.getPlayerId() == null) {
+            throw new MissingPlayerException("You need to choose a playerId");
+        }
+        // Get player
         var player = characterService.findById(battlePostRequestDTO.getPlayerId());
-        var opponent = characterService.findById(battlePostRequestDTO.getOpponentId());
+
+        // Get opponent
+        CharacterModel opponent;
+        if (battlePostRequestDTO.getOpponentId() == null) {
+            // if opponentId is null, get random opponent
+            Long opponentId = characterService.getRandomMonsterId();
+            opponent = characterService.findById(opponentId);
+        } else {
+            opponent = characterService.findById(battlePostRequestDTO.getOpponentId());
+        }
 
         // Create new Battle instance
         BattleModel battle = new BattleModel();
