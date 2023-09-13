@@ -10,6 +10,7 @@ services:
       - "89:80"
     networks:
       - postgres-network
+
   postgres:
     image: postgres:10
     container_name: postgres10_container
@@ -20,8 +21,21 @@ services:
       - "5432:5432"
     networks:
       - postgres-network
-    volumes:
-      - ./postgres:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - postgres-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/dungeons_and_dragons
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
 networks:
   postgres-network:
     driver: bridge
