@@ -76,7 +76,7 @@ Rodar o seguinte comando:
 docker-compose up
 ```
 
-> Opcional: Após isso, é possível acessar o banco de dados Postgres (PGAdmin) no seguinte endereço:
+> Opcional: Após isso, é possível acessar o banco de dados Postgres (PGAdmin) no seguinte endereço (será necessário configurar o servidor):
 
 http://localhost:89/
 
@@ -85,11 +85,6 @@ Credenciais:
 - email: `admin@example.com`
 - senha: `admin`
 
-Configurar servidor:
-
-![img.png](images/img.png)
-
-![img_1.png](images/img_1.png)
 
 ### 3 - Acessar o OpenAPI da API:
 
@@ -97,6 +92,7 @@ http://localhost:8080/swagger-ui/index.html
 
 > Ao acessar a API, já é feita a inserção de alguns personagens de amostra. Para checar, é necessário ir no Swagger e testar a rota: `GET /api/v1/characters`
 
+![img.png](images/openapi.png)
 
 ### 4 - Colocar credenciais para utilizar a API
 
