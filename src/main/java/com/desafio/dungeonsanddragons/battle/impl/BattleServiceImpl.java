@@ -9,6 +9,8 @@ import com.desafio.dungeonsanddragons.battle.enums.BattleStatus;
 import com.desafio.dungeonsanddragons.battle.exceptions.BattleNotFoundException;
 import com.desafio.dungeonsanddragons.battle.exceptions.InvalidActionException;
 import com.desafio.dungeonsanddragons.character.CharacterService;
+import com.desafio.dungeonsanddragons.damage.DamageService;
+import com.desafio.dungeonsanddragons.damage.dto.DamageRequestDTO;
 import com.desafio.dungeonsanddragons.log.LogModel;
 import com.desafio.dungeonsanddragons.log.LogService;
 import com.desafio.dungeonsanddragons.shift.ShiftModel;
@@ -33,6 +35,7 @@ public class BattleServiceImpl implements BattleService {
     private final CharacterService characterService;
     private final LogService logService;
     private final ShiftService shiftService;
+    private final DamageService damageService;
 
     @Override
     public List<BattleModel> getAll() {
@@ -130,13 +133,12 @@ public class BattleServiceImpl implements BattleService {
         // Initialize the damage value to zero
         int damageValue = 0;
 
-        // If successful, calculate the damage value by rolling the dice according
-        // to the character's damage attribute and adding it to their strength
+        // If successful, call the damage endpoint to calculate
+        // the damage value by passing the character
         if (success) {
-            for (int i = 0; i < battle.getPlayer().getDiceQuantity(); i++) {
-                damageValue += random.nextInt(battle.getPlayer().getDiceFaces()) + 1;
-            }
-            damageValue += battle.getPlayer().getStrength();
+            DamageRequestDTO damageRequest = new DamageRequestDTO();
+            damageRequest.setCharacter(battle.getPlayer());
+            damageValue = damageService.calculateDamage(damageRequest);
 
             // Subtract the damage value from the opponent's life points
             // and check if they are zero or less
@@ -208,13 +210,12 @@ public class BattleServiceImpl implements BattleService {
         // Initialize the damage value to zero
         int damageValue = 0;
 
-        // If not successful, calculate the damage value by rolling the dice according
-        // to the opponent's damage attribute and adding it to their strength
+        // If not successful, call the damage endpoint to calculate
+        // the damage value by passing the character
         if (!success) {
-            for (int i = 0; i < battle.getOpponent().getDiceQuantity(); i++) {
-                damageValue += random.nextInt(battle.getOpponent().getDiceFaces()) + 1;
-            }
-            damageValue += battle.getOpponent().getStrength();
+            DamageRequestDTO damageRequest = new DamageRequestDTO();
+            damageRequest.setCharacter(battle.getOpponent());
+            damageValue = damageService.calculateDamage(damageRequest);
 
             // Subtract the damage value from the character's life points
             // and check if they are zero or less
