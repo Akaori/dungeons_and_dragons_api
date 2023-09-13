@@ -60,8 +60,8 @@ LOG ||--|{ SHIFT : shifts
 git clone https://github.com/Akaori/dungeons_and_dragons_api.git
 ```
 
-### 2 - Subir o banco de dados
-> Para subir o banco de dados Postgres, é necessário ter o docker e docker-compose instalados. 
+### 2 - Subir os serviços (aplicativo springboot, postgres e pgadmin)
+> É necessário ter o docker e docker-compose instalados. 
 
 Mudar para o diretório do repositório clonado:
 
