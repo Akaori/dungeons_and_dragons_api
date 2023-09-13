@@ -5,7 +5,6 @@ import com.desafio.dungeonsanddragons.character.CharacterRepository;
 import com.desafio.dungeonsanddragons.character.CharacterService;
 import com.desafio.dungeonsanddragons.character.dto.CharacterPutRequestDTO;
 import com.desafio.dungeonsanddragons.character.dto.CharacterRequestDTO;
-import com.desafio.dungeonsanddragons.character.enums.CharacterRole;
 import com.desafio.dungeonsanddragons.character.exceptions.CharacterNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
