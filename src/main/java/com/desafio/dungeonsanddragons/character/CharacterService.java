@@ -15,4 +15,6 @@ public interface CharacterService {
     CharacterModel update(CharacterPutRequestDTO characterPutRequestDTO, Long id);
 
     void delete(Long id);
+
+    Long getRandomMonsterId();
 }
