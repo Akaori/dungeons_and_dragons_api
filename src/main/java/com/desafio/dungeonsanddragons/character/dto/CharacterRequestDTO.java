@@ -16,4 +16,14 @@ public class CharacterRequestDTO {
     private int diceQuantity;
     private int diceFaces;
 
+    public CharacterRequestDTO(String name, CharacterRole role, int life, int strength, int defense, int agility, int diceQuantity, int diceFaces) {
+        this.name = name;
+        this.role = role;
+        this.life = life;
+        this.strength = strength;
+        this.defense = defense;
+        this.agility = agility;
+        this.diceQuantity = diceQuantity;
+        this.diceFaces = diceFaces;
+    }
 }
