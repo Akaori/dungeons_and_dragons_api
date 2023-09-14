@@ -163,6 +163,7 @@ public class BattleServiceImpl implements BattleService {
 
             if (battle.getOpponent().getLife() <= 0) {
                 // End the battle and declare the winner as the player
+                battle.setShift(battle.getShift() + 1);
                 battle.setStatus(BattleStatus.CLOSED);
                 battle.setWinner(GameRole.PLAYER);
             } else {
