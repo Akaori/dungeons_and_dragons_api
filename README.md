@@ -7,6 +7,9 @@ Escolha o seu nome e personagem favorito (herói ou monstro).
 O seu oponente sempre será um monstro, você pode escolher ou deixar aleatório.
 
 
+[Clique aqui para ver o projeto](https://github.com/users/Akaori/projects/2/views/2)
+
+
 ## Arquitetura de tabelas
 
 ```mermaid
