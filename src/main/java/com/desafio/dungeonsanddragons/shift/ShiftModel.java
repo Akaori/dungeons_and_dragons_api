@@ -7,6 +7,9 @@ import com.desafio.dungeonsanddragons.log.enums.Result;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 
 @Data
@@ -46,4 +49,8 @@ public class ShiftModel {
     @JoinColumn(name="log_id", nullable=false)
     @JsonIgnore
     private LogModel log;
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
 }
