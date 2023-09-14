@@ -101,3 +101,39 @@ Foi adicionada uma camada de seguranção (Basic Auth) para acessar a API. Utili
 
 - Username: `user`
 - Password: `user123`
+
+### 5 - Instruções para usasr a API:
+
+1. Listar os personagens existentes:
+
+![img.png](images/characters.png)
+
+2. Iniciar uma batalha
+
+![img.png](images/battle.png)
+
+- Escolher um `playerId` válido (que exista na listagem de personagens na etapa 1)
+- O `opponentId` é opcional, se não for setado, o oponente será aleatório. Caso seja setado, escolher um id válido.
+- Como resposta, é possível ver no atributo `initiative` quem começa a batalha. Na imagem acima, será o jogador.
+
+3. Alter entre defesa e ataque, dependendo de quem for a iniciativa
+
+![img.png](images/attack.png)
+
+- Como quem iniciou a batalha foi o jogador, a primeira ação será o ataque.
+- Colocar qual é o id da batalha
+- Como output, será possível ver os atributos dos personagens atualizados, o log e os turnos da batalha.
+
+![img.png](images/defense.png)
+
+- Após o ataque, alternar para a defesa.
+- Ir alternando entre ataque e defesa, até o status da batalhar ficar como `CLOSED`:
+
+![img_1.png](images/closed.png)
+
+4. Ver o log
+
+![img.png](images/log.png)
+
+- O log contém detalhes de quem é o jogador, oponente e que começou.
+- Também contém os turnos da batalha.
