@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CharacterNotFoundException extends RuntimeException {
 
     public CharacterNotFoundException(Long id) {
-        super("Character id " + id + "not found.");
+        super("Character with id " + id + " not found");
     }
 }
