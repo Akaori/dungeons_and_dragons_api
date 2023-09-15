@@ -42,6 +42,18 @@ public class CharacterModel {
     @Column(nullable = false)
     private int diceFaces;
 
+    public CharacterModel(Long id, String name, CharacterRole role, int life, int strength, int defense, int agility, int diceQuantity, int diceFaces) {
+        this.id = id;
+        this.name = name;
+        this.role = role;
+        this.life = life;
+        this.strength = strength;
+        this.defense = defense;
+        this.agility = agility;
+        this.diceQuantity = diceQuantity;
+        this.diceFaces = diceFaces;
+    }
+
     public CharacterModel(CharacterRequestDTO character) {
         this.name = character.getName();
         this.role = character.getRole();
