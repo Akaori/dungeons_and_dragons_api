@@ -1,5 +1,7 @@
 # API Dungeons & Dragons (AD&D)
 
+![test workflow](https://github.com/Akaori/dungeons_and_dragons_api/actions/workflows/test.yml/badge.svg)
+
 API Rest usando Java SpringBoot com banco de dados Postgres.
 
 O jogo, como todo bom RPG (Role Playing Game), será duelado em turnos.
