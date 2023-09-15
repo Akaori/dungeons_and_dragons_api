@@ -142,3 +142,8 @@ Foi adicionada uma camada de seguranção (Basic Auth) para acessar a API. Utili
 
 - O log contém detalhes de quem é o jogador, oponente e que começou.
 - Também contém os turnos da batalha.
+
+
+### 6 - Testes automatizados
+
+Foi implementado testes automatizados para o serviço de personagens.
