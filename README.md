@@ -146,4 +146,5 @@ Foi adicionada uma camada de seguranção (Basic Auth) para acessar a API. Utili
 
 ### 6 - Testes automatizados
 
-Foi implementado testes automatizados para o serviço de personagens.
+- Testes para o serviço de personagens
+- CI com Github Actions
